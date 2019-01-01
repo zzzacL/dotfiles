@@ -1,0 +1,9 @@
+audio_quality = high
+format_msg_info = i %s
+format_msg_nowplaying = ▶ %s
+format_msg_time =  %s
+format_msg_err = ! %s
+format_msg_question = ? %s
+format_nowplaying_song = %t - %a %r
+format_nowplaying_station = %n (%i)
+love_icon = ♥
