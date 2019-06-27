@@ -54,7 +54,8 @@ font-2 = "NotoEmoji Nerd Font Mono:style=Book:size=11;0"
 
 modules-left = bspwm i3
 ;modules-center = xwindow 
-modules-right = pulseaudio memory cpu wlan temperature date powermenu
+modules-right = pulseaudio memory cpu wlan temperature date
+; powermenu
 
 ;tray-position = right
 ;tray-padding = 2
