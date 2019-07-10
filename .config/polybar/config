@@ -22,13 +22,13 @@ background = #000
 background-alt = #222
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
-foreground-alt = #555
+foreground-alt = #575757
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
 [bar/my-bar]
-monitor = DP-4
+;monitor = DP-4
 width = 100%
 height = 30
 fixed-center = true
@@ -46,19 +46,15 @@ padding-left = 0
 padding-right = 3
 
 module-margin-left = 0
-module-margin-right = 3
+module-margin-right = 1
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = "NotoEmoji Nerd Font Mono:style=Book:size=11;0"
+font-0 = fixed:pixelsize=13;1
+font-1 = unifont:fontformat=truetype:size=14:antialias=true;0
+font-2 = "NotoEmoji Nerd Font Mono:size=20;0"
 
 modules-left = bspwm i3
 ;modules-center = xwindow 
-modules-right = pulseaudio memory cpu wlan temperature date
-; powermenu
-
-;tray-position = right
-;tray-padding = 2
+modules-right = wlan pulseaudio memory cpu temperature battery date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -129,7 +125,7 @@ ws-icon-default = ""
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
-label-mode-padding =8 
+label-mode-padding =1 
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
@@ -154,10 +150,6 @@ label-urgent = %icon%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
-; Separator in between workspaces
-; label-separator = |
-
-
 [module/mpd]
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
@@ -174,23 +166,23 @@ label-song-ellipsis = true
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = ""
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " 力"
+format-prefix = " 力 "
 format-prefix-foreground = ${colors.foreground-alt}
 label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = net1
+interface = wlp1s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <ramp-signal>
 format-connected-underline = #9f78e1
 label-connected = %essid%
 
@@ -200,11 +192,17 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+ramp-signal-0 = ﲲ
+ramp-signal-1 = ﲱ
+ramp-signal-2 = ﲰ
+;ramp-signal-3 = 
+;ramp-signal-4 = 
+;ramp-signal-5 = 
+;ramp-signal-6 = 
+;ramp-signal-7 = 
+;ramp-signal-8 = 
+;ramp-signal-9 = 
+;ramp-signal-10 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
@@ -228,9 +226,9 @@ type = internal/date
 interval = 5
 
 date =
-date-alt = " %Y-%m-%d"
+date-alt = " %Y|%m|%d"
 
-time = %H:%M
+time = %I:%M
 time-alt = %H:%M:%S
 
 format-prefix =  
@@ -248,9 +246,9 @@ ramp-volume-foreground = ${colors.foreground-alt}
 
 ramp-volume-0 =奄
 ramp-volume-1 =奔
-ramp-volume-2 =墳 
+ramp-volume-2 =墳
 
-label-muted = 婢 mute
+label-muted = 婢
 label-muted-foreground = #666
 
 bar-volume-width = 10
@@ -279,34 +277,40 @@ full-at = 98
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = #ffb52a
 
-format-discharging = <animation-discharging> <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
+format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-0 =  
+ramp-capacity-1 =  
+ramp-capacity-2 =  
+ramp-capacity-3 =  
+ramp-capacity-4 =  
+ramp-capacity-5 =  
+ramp-capacity-6 =  
+ramp-capacity-7 =  
+ramp-capacity-8 =  
+ramp-capacity-9 =  
+ramp-capacity-10=  
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 =  
+animation-charging-1 =  
+animation-charging-2 =  
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+animation-charging-6 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+warn-temperature = 85
 
 format = <ramp> <label>
 format-underline = #f50a4d
@@ -317,39 +321,12 @@ label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 =  
+ramp-1 =  
+ramp-2 =  
+ramp-3 =  
+ramp-4 =  
 ramp-foreground = ${colors.foreground-alt}
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = ${colors.foreground-alt}
-label-close =  
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true
